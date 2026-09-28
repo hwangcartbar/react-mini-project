@@ -29,38 +29,32 @@ jobs:
 
       # GitHub에 올린 코드를 가져옴
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
-
-      # Node.js 설치
+      # Node.js 24 설치
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
-          node-version: 20
+          node-version: 24
           cache: npm
-
 
       # package.json의 라이브러리 설치
       - name: Install dependencies
         run: npm ci
 
-
       # React 프로젝트 build
       - name: Build
         run: npm run build
 
-
       # GitHub Pages 설정
       - name: Setup Pages
-        uses: actions/configure-pages@v5
-
+        uses: actions/configure-pages@v6
 
       # build된 dist 폴더 업로드
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4
         with:
           path: ./dist
-
 
   deploy:
 
